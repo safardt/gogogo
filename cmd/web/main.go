@@ -38,10 +38,29 @@ func main() {
 	route.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
+	route.POST("/upload", func(c *gin.Context){
+		log.Println("Upload starts!")
+		uploadFile(c)
+	})
 
 	route.GET("/d3map", func(c* gin.Context){
 		c.HTML(http.StatusOK, "d3map.html", gin.H{})
 	})
 	log.Println("Git")
 	route.Run(":8080")
+}
+
+func uploadFile(c *gin.Context){
+	file, err := c.FormFile("file")
+	if err!=nil{
+		log.Println(err)
+		return
+	}
+	fileName := file.Filename
+
+	if err:=c.SaveUploadedFile(file, "C:/programms/Go/Goprojects/src/gogogo/ui/static/fileupload/"+fileName); err!=nil{
+		log.Println(err)
+		return
+	}
+	log.Println("File was saved!")
 }

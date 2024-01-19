@@ -18,16 +18,11 @@ var projection;
 d3.json("/static/json/custom.geo.json").then(function (data) {
     projection = d3.geoOrthographic().fitSize([width, height], data);
     const path = d3.geoPath().projection(projection);
-    const countries = data.features
     
     // Отрисовка границ стран
-    svg.append("path")
-      .datum(sphere)
-      .attr("class", "sphere")
-      .attr("d", path);
       
-    svg.selectAll(".country")
-      .data(countries)
+    svg.selectAll("path")
+      .data(data.features)
       .enter()
       .append("path")
       .attr("class", "country")
