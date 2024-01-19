@@ -42,6 +42,6 @@ func main() {
 	route.GET("/d3map", func(c* gin.Context){
 		c.HTML(http.StatusOK, "d3map.html", gin.H{})
 	})
-
+	log.Println("Git")
 	route.Run(":8080")
 }
