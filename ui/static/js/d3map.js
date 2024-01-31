@@ -23,7 +23,6 @@ d3.json("/static/json/custom.geo.json").then(function (data) {
       .data(data.features)
       .enter()
       .append("path")
-      .attr("class", "country")
       .attr("d", path)
       .attr("fill","steelblue");
 
